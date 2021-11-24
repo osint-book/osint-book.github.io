@@ -1,0 +1,1553 @@
+
+
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ABase OSINT, inteligencia em outro nivel.">
+      
+      
+        <link rel="canonical" href="https://books.osintvillage.org/LABS/monitorando-phishings/white/monitorando-dominios/">
+      
+      
+        <meta name="author" content="GreenMind">
+      
+      <link rel="shortcut icon" href="../../../../assets/favicon.jpeg">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-5.2.2">
+    
+    
+      
+        <title>2.1 Monitoramento de dominios - OSINT Village - Book 0.1 DEV</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.b8fb47b5.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#monitorando-dominios" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://books.osintvillage.org/" title="OSINT Village - Book 0.1 DEV" class="md-header-nav__button md-logo" aria-label="OSINT Village - Book 0.1 DEV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89 89"><path d="M3.136 17.387v42.932l42.932 21.467L3.136 17.387z"/><path d="M21.91 8l42.933 64.398-18.775 9.388L3.136 17.387 21.91 8z" fill-opacity=".5"/><path d="M67.535 17.387L40.273 35.543l21.878 32.818 5.384 2.691V17.387z"/><path d="M67.535 17.387v53.666l18.774-9.388V8l-18.774 9.387z" fill-opacity=".25"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            OSINT Village - Book 0.1 DEV
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              2.1 Monitoramento de dominios
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../.." class="md-tabs__link">
+          Home
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../infraestrutura/a-importancia-criacao-lab/" class="md-tabs__link">
+          Infraestrutura
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../" class="md-tabs__link">
+          Laboratorios
+        </a>
+      
+    </li>
+  
+
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://books.osintvillage.org/" title="OSINT Village - Book 0.1 DEV" class="md-nav__button md-logo" aria-label="OSINT Village - Book 0.1 DEV">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89 89"><path d="M3.136 17.387v42.932l42.932 21.467L3.136 17.387z"/><path d="M21.91 8l42.933 64.398-18.775 9.388L3.136 17.387 21.91 8z" fill-opacity=".5"/><path d="M67.535 17.387L40.273 35.543l21.878 32.818 5.384 2.691V17.387z"/><path d="M67.535 17.387v53.666l18.774-9.388V8l-18.774 9.387z" fill-opacity=".25"/></svg>
+
+    </a>
+    OSINT Village - Book 0.1 DEV
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Home
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Home" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Home
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Infraestrutura
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Infraestrutura" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Infraestrutura
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      Analise Phishing
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Analise Phishing" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Analise Phishing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../infraestrutura/a-importancia-criacao-lab/" title="A importancia da criação lab" class="md-nav__link">
+      A importancia da criação lab
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../infraestrutura/requisitos-lab/" title="Requisitos laboratorio" class="md-nav__link">
+      Requisitos laboratorio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../infraestrutura/instalando-virtualbox-linux/" title="Instalando Virtualbox - Linux" class="md-nav__link">
+      Instalando Virtualbox - Linux
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../infraestrutura/criando-lab-kali-oficial-virtualbox/" title="Criando maquina Kali Oficial - Virtualbox" class="md-nav__link">
+      Criando maquina Kali Oficial - Virtualbox
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../infraestrutura/instalando-genymotion-linux/" title="Criando laboratorio Android - Genymotion" class="md-nav__link">
+      Criando laboratorio Android - Genymotion
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../infraestrutura/criando-lab-windows-virtualbox/" title="Criando laboratorio Windows - Virtualbox" class="md-nav__link">
+      Criando laboratorio Windows - Virtualbox
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Laboratorios
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Laboratorios" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Laboratorios
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1" checked>
+    
+    <label class="md-nav__link" for="nav-3-1">
+      Monitoramento de Phishing
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Monitoramento de Phishing" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Monitoramento de Phishing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-1" type="checkbox" id="nav-3-1-1">
+    
+    <label class="md-nav__link" for="nav-3-1-1">
+      1. Antes de começar
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="1. Antes de começar" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        1. Antes de começar
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" title="1.1. Monitorando phishings - Home" class="md-nav__link">
+      1.1. Monitorando phishings - Home
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introducao/" title="1.2. Monitorando phishings - Qual o objetivo desse modulo?" class="md-nav__link">
+      1.2. Monitorando phishings - Qual o objetivo desse modulo?
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2" type="checkbox" id="nav-3-1-2" checked>
+    
+    <label class="md-nav__link" for="nav-3-1-2">
+      2. Whitehat
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="2. Whitehat" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        2. Whitehat
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        2.1 Monitoramento de dominios
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="2.1 Monitoramento de dominios" class="md-nav__link md-nav__link--active">
+      2.1 Monitoramento de dominios
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tld" class="md-nav__link">
+    TLD
+  </a>
+  
+    <nav class="md-nav" aria-label="TLD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-e-tld" class="md-nav__link">
+    O que é TLD ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criando-uma-lista-de-tlds" class="md-nav__link">
+    Criando uma lista de TLDs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solucoes-opensource" class="md-nav__link">
+    Soluções opensource
+  </a>
+  
+    <nav class="md-nav" aria-label="Soluções opensource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dnstwist" class="md-nav__link">
+    DNSTwist
+  </a>
+  
+    <nav class="md-nav" aria-label="DNSTwist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalando-dnstwist" class="md-nav__link">
+    Instalando - DNSTwist
+  </a>
+  
+    <nav class="md-nav" aria-label="Instalando - DNSTwist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#via-pip" class="md-nav__link">
+    Via PIP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#via-git" class="md-nav__link">
+    Via GIT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#via-docker" class="md-nav__link">
+    Via Docker
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versoes-online-dnstwist" class="md-nav__link">
+    Versões online - DNSTwist
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#urlcrazy" class="md-nav__link">
+    URLCrazy
+  </a>
+  
+    <nav class="md-nav" aria-label="URLCrazy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-e-o-urlcrazy" class="md-nav__link">
+    O que é o URLCrazy?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalando-o-urlcrazy" class="md-nav__link">
+    Instalando o URLCrazy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-podemos-usar-o-urlcrazy" class="md-nav__link">
+    Como podemos usar o URLCrazy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phishing_catcher" class="md-nav__link">
+    phishing_catcher
+  </a>
+  
+    <nav class="md-nav" aria-label="phishing_catcher">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-e-o-phishing_catcher" class="md-nav__link">
+    O que é o phishing_catcher ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalando-o-phishing_catcher" class="md-nav__link">
+    Instalando o phishing_catcher
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-usar-o-phishing_catcher" class="md-nav__link">
+    Como usar o phishing_catcher?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buscando-dominios-indexados-na-internet" class="md-nav__link">
+    Buscando dominios indexados na internet
+  </a>
+  
+    <nav class="md-nav" aria-label="Buscando dominios indexados na internet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#realizando-dorks-para-busca" class="md-nav__link">
+    Realizando dorks para busca
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buscando-infraestruturas-indexados-na-internet" class="md-nav__link">
+    Buscando infraestruturas indexados na internet
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../buscando-informacoes-sobre-infraestruturas/" title="2.2 Buscando informações sobre infraestruturas" class="md-nav__link">
+      2.2 Buscando informações sobre infraestruturas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../materiais-indexados-na-internet/" title="2.3 Materiais indexados na internet" class="md-nav__link">
+      2.3 Materiais indexados na internet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../buscando-paginas-suspeitas/" title="2.4 Buscando paginas suspeitas" class="md-nav__link">
+      2.4 Buscando paginas suspeitas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../comunidades/" title="2.5 Comunidades" class="md-nav__link">
+      2.5 Comunidades
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-3" type="checkbox" id="nav-3-1-3">
+    
+    <label class="md-nav__link" for="nav-3-1-3">
+      3. Blackhat
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="3. Blackhat" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        3. Blackhat
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../black/criacao-dominios/" title="3.1 Criação de domínios" class="md-nav__link">
+      3.1 Criação de domínios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../black/criando-paginas-suspeitas/" title="3.2 Criando paginas" class="md-nav__link">
+      3.2 Criando paginas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../black/hospedagem.md" title="3.3 Hospedagens" class="md-nav__link">
+      3.3 Hospedagens
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../black/infraestruturas-gratuitas/" title="3.4 Infraestruturas gratuitas" class="md-nav__link">
+      3.4 Infraestruturas gratuitas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../infraestruturas-pagas.md" title="3.5 Infraestruturas pagas" class="md-nav__link">
+      3.5 Infraestruturas pagas
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../configuracao-dns.md" title="3.6 Configuração de DNS" class="md-nav__link">
+      3.6 Configuração de DNS
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tld" class="md-nav__link">
+    TLD
+  </a>
+  
+    <nav class="md-nav" aria-label="TLD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-e-tld" class="md-nav__link">
+    O que é TLD ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criando-uma-lista-de-tlds" class="md-nav__link">
+    Criando uma lista de TLDs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solucoes-opensource" class="md-nav__link">
+    Soluções opensource
+  </a>
+  
+    <nav class="md-nav" aria-label="Soluções opensource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dnstwist" class="md-nav__link">
+    DNSTwist
+  </a>
+  
+    <nav class="md-nav" aria-label="DNSTwist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalando-dnstwist" class="md-nav__link">
+    Instalando - DNSTwist
+  </a>
+  
+    <nav class="md-nav" aria-label="Instalando - DNSTwist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#via-pip" class="md-nav__link">
+    Via PIP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#via-git" class="md-nav__link">
+    Via GIT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#via-docker" class="md-nav__link">
+    Via Docker
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versoes-online-dnstwist" class="md-nav__link">
+    Versões online - DNSTwist
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#urlcrazy" class="md-nav__link">
+    URLCrazy
+  </a>
+  
+    <nav class="md-nav" aria-label="URLCrazy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-e-o-urlcrazy" class="md-nav__link">
+    O que é o URLCrazy?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalando-o-urlcrazy" class="md-nav__link">
+    Instalando o URLCrazy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-podemos-usar-o-urlcrazy" class="md-nav__link">
+    Como podemos usar o URLCrazy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phishing_catcher" class="md-nav__link">
+    phishing_catcher
+  </a>
+  
+    <nav class="md-nav" aria-label="phishing_catcher">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-e-o-phishing_catcher" class="md-nav__link">
+    O que é o phishing_catcher ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalando-o-phishing_catcher" class="md-nav__link">
+    Instalando o phishing_catcher
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-usar-o-phishing_catcher" class="md-nav__link">
+    Como usar o phishing_catcher?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buscando-dominios-indexados-na-internet" class="md-nav__link">
+    Buscando dominios indexados na internet
+  </a>
+  
+    <nav class="md-nav" aria-label="Buscando dominios indexados na internet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#realizando-dorks-para-busca" class="md-nav__link">
+    Realizando dorks para busca
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buscando-infraestruturas-indexados-na-internet" class="md-nav__link">
+    Buscando infraestruturas indexados na internet
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="monitorando-dominios">Monitorando domínios<a class="headerlink" href="#monitorando-dominios" title="Permanent link">&para;</a></h1>
+<h2 id="tld">TLD<a class="headerlink" href="#tld" title="Permanent link">&para;</a></h2>
+<h3 id="o-que-e-tld">O que é TLD ?<a class="headerlink" href="#o-que-e-tld" title="Permanent link">&para;</a></h3>
+<p>TLD, ou Top Level Domain, é a parte final de um endereço de um site que vem logo após o nome.</p>
+<p>Por exemplo:</p>
+<ul>
+<li>
+<p>badbank(nome do site)</p>
+</li>
+<li>
+<p>.com.br(TLD)</p>
+</li>
+</ul>
+<p>Para melhor entendimento, o TLD seria a exata localização de uma empresa, seu endereço completo.</p>
+<p>Por exemplo:</p>
+<ul>
+<li>badbank.com.br</li>
+</ul>
+<p>Alguns exemplos de TLD são:</p>
+<ul>
+<li>
+<p>.com</p>
+</li>
+<li>
+<p>.com.br</p>
+</li>
+<li>
+<p>.fun</p>
+</li>
+<li>
+<p>.info</p>
+</li>
+<li>
+<p>.com</p>
+</li>
+<li>
+<p>.us</p>
+</li>
+<li>
+<p>.co</p>
+</li>
+<li>
+<p>entre outros</p>
+</li>
+</ul>
+<p>Obviamente, ele não está em um domínio ao acaso, seu objetivo é realizar uma espécie de classificação do site. Ou seja, um site comercial cujo top-level domain é .com está informando que se trata de um site comercial.</p>
+<p>Outro exemplo que temos é o WordPress.com, que é um site comercial, enquanto o WordPress.org se trata de uma versão sem fins lucrativos do grupo.</p>
+<blockquote>
+<p>Referencia: <a href="https://br.godaddy.com/blog/tld-o-que-e-quais-existem-e-como-escolher-o-ideal/">https://br.godaddy.com/blog/tld-o-que-e-quais-existem-e-como-escolher-o-ideal/</a>
+[O que é TLD](<a href="https://pt.wikipedia.org/wiki/Dom%C3%ADnio_de_topo">https://pt.wikipedia.org/wiki/Dom%C3%ADnio_de_topo</a></p>
+</blockquote>
+<p>Podemos ver algumas lista de TLDs no site oficial da IANA</p>
+<blockquote>
+<p><a href="https://data.iana.org/TLD/tlds-alpha-by-domain.txt">Lista de TLDs da <strong>IANA</strong></a></p>
+</blockquote>
+<p>Ou uma lista completa disponiveis e as novidades que serão lançadas em TLDs.</p>
+<blockquote>
+<p><a href="https://tld-list.com/tlds-from-a-z">TLDs de A a Z</a></p>
+</blockquote>
+<h3 id="criando-uma-lista-de-tlds">Criando uma lista de TLDs<a class="headerlink" href="#criando-uma-lista-de-tlds" title="Permanent link">&para;</a></h3>
+<p>Anteriormente vimos diversos sites que nos auxilia na listagem de possiveis TLDs, agora vamos usar o <a href="https://tld-list.com/tlds-from-a-z">tlds-from-a-z</a> por ser o mais completo.</p>
+<p>Vamos criar um arquivo .txt com os dominios e com o passar do tempo adicionando novos que forem encontrados durante o nosso trabalho ou até alguma atualização com TLDs novos.</p>
+<p>Agora vamos alterar nossa lista e adicionar dominios que não estão na lista com foco no brasil, por exemplo <strong>.gov.br</strong>, podemos ver que não aparece esse dominio e seria interessante adicionar. Dominios .gov acabam não aparecendo e é interessante adicionar.
+Por exemplo:</p>
+<ul>
+<li>
+<p>sp.gov.br</p>
+</li>
+<li>
+<p>mg.gov.br</p>
+</li>
+<li>
+<p>pb.gov.br</p>
+</li>
+<li>
+<p>es.gov.br</p>
+</li>
+<li>
+<p>pa.gov.br</p>
+</li>
+<li>
+<p>rj.gov.br</p>
+</li>
+<li>
+<p>ba.gov.br</p>
+</li>
+<li>
+<p>ap.gov.br</p>
+</li>
+<li>
+<p>se.gov.br</p>
+</li>
+<li>
+<p>ce.gov.br</p>
+</li>
+<li>
+<p>go.gov.br</p>
+</li>
+<li>
+<p>df.gov.br</p>
+</li>
+<li>
+<p>rr.gov.br</p>
+</li>
+<li>
+<p>sc.gov.br</p>
+<blockquote>
+<p>Todas essas informações podem ser interessantes em algum momento da pesquisa, vai que um dominio governamental está sendo usado como phishing né ?!</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="solucoes-opensource">Soluções opensource<a class="headerlink" href="#solucoes-opensource" title="Permanent link">&para;</a></h2>
+<p>Temos soluções pagas que fazem esses serviços, mas o objetivo dessa oficina é usar apenas soluções opensource e que podemos analisar codigo fonte e até enviar melhorias.</p>
+<h3 id="dnstwist">DNSTwist<a class="headerlink" href="#dnstwist" title="Permanent link">&para;</a></h3>
+<p>O DNSTwist nos auxilia e reconhecimento de problema que os usuários podem ter ao tentar digitar seu nome de domínio.</p>
+<p>Conseguimos analisar diversas tecnicas que os adversários possam usar para atacar você.</p>
+<p>Algumas das tecnicas usadas são:</p>
+<ul>
+<li>
+<p>Pode detectar erros de digitação;</p>
+</li>
+<li>
+<p>Ataques de phishing;</p>
+</li>
+<li>
+<p>Fraude;</p>
+</li>
+<li>
+<p>Falsificação de identidade de marca.</p>
+</li>
+</ul>
+<p>Com o <strong>dnstwist</strong> podemos encontrar fonte adicionais de inteligência sobre ameaças direcionadas a dominios especificos e graças a ela muitos dominios suspeitos são encontrados.</p>
+<blockquote>
+<p><a href="https://github.com/elceef/dnstwist/">Site oficial - dnstwist</a></p>
+</blockquote>
+<h4 id="instalando-dnstwist">Instalando - DNSTwist<a class="headerlink" href="#instalando-dnstwist" title="Permanent link">&para;</a></h4>
+<p>Podemos instalar o dnstwist de 3 formas, são elas:</p>
+<ul>
+<li>
+<p>Via PIP;</p>
+</li>
+<li>
+<p>Via GIT;</p>
+</li>
+<li>
+<p>Via Docker.</p>
+</li>
+</ul>
+<h5 id="via-pip">Via PIP<a class="headerlink" href="#via-pip" title="Permanent link">&para;</a></h5>
+<p>Podemos realizar a instalação com o PIP da seguinte forma:
+<div class="highlight"><pre><span></span><code>sudo pip install dnstwist
+</code></pre></div></p>
+<blockquote>
+<p>Lembrando que precisa ter instalado o pip.</p>
+</blockquote>
+<h5 id="via-git">Via GIT<a class="headerlink" href="#via-git" title="Permanent link">&para;</a></h5>
+<p>Caso queira ter a ultima versão do projeto podemos optar por usar a versão via GIT.
+<div class="highlight"><pre><span></span><code>$ git clone https://github.com/elceef/dnstwist.git
+$ <span class="nb">cd</span> dnstwist
+$ pip install .
+</code></pre></div></p>
+<h5 id="via-docker">Via Docker<a class="headerlink" href="#via-docker" title="Permanent link">&para;</a></h5>
+<p>O Docker temos duas formas de realizar a instalação, são elas:</p>
+<ol>
+<li>
+<p>A primeira é usar a imagem oficial do dnstwist que está disponivel no Docker Hub,
+<div class="highlight"><pre><span></span><code>$ docker run elceef/dnstwist
+</code></pre></div></p>
+</li>
+<li>
+<p>A segunda é criar uma imagem propria com o codigo que temos no github.
+<div class="highlight"><pre><span></span><code>$ git clone https://github.com/elceef/dnstwist.git
+$ <span class="nb">cd</span> dnstwist
+$ docker build -t <span class="s2">&quot;greenmind/dnstwist:1&quot;</span> .
+</code></pre></div></p>
+</li>
+</ol>
+<h4 id="versoes-online-dnstwist">Versões online - DNSTwist<a class="headerlink" href="#versoes-online-dnstwist" title="Permanent link">&para;</a></h4>
+<p>Alem de instalar o dnstwist, tambem podemos realizar o uso via web.</p>
+<blockquote>
+<p><a href="https://dnstwist.it/">Projeto online oficinal do dnstwist</a></p>
+</blockquote>
+<p>Com ele podemos realizar a consultas de dominio da mesma forma que fizemos via linha de comando, a diferença é que usamos a versão web.
+<img alt="" src="../images/dnstwist-01.png" /></p>
+<h3 id="urlcrazy">URLCrazy<a class="headerlink" href="#urlcrazy" title="Permanent link">&para;</a></h3>
+<h4 id="o-que-e-o-urlcrazy">O que é o URLCrazy?<a class="headerlink" href="#o-que-e-o-urlcrazy" title="Permanent link">&para;</a></h4>
+<p>O URLCrazy é uma solução opensource com foco em OSINT para gerar e testar erros de digitação ou variações de domínio para detectar ou executar erros de digitação, sequestro de URL, phishing e espionagem corporativa.</p>
+<blockquote>
+<p><a href="https://github.com/urbanadventurer/urlcrazy">https://github.com/urbanadventurer/urlcrazy</a></p>
+</blockquote>
+<p>Conseguimos detectar invasores que lucram com erros de digitação em nomes de domínio, é possivel proteger uma marca registrando erros de digitação populares, alem de identificar domínio que receberão tráfego destinado a outro domínio e conduzir ataques de phishing durante um pentest.</p>
+<h4 id="instalando-o-urlcrazy">Instalando o URLCrazy<a class="headerlink" href="#instalando-o-urlcrazy" title="Permanent link">&para;</a></h4>
+<p>Caso esteja usando o Kali Linux é possivel instalar usando apt.
+<div class="highlight"><pre><span></span><code>$ sudo apt update
+$ sudo apt install urlcrazy
+</code></pre></div></p>
+<h4 id="como-podemos-usar-o-urlcrazy">Como podemos usar o URLCrazy<a class="headerlink" href="#como-podemos-usar-o-urlcrazy" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>urlcrazy -p badbank.com.br
+</code></pre></div>
+<blockquote>
+<p>Dessa forma ele vai nos retornar diversos domínios, seja registrados ou não.</p>
+</blockquote>
+<h3 id="phishing_catcher">phishing_catcher<a class="headerlink" href="#phishing_catcher" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><a href="https://github.com/x0rz/phishing_catcher">https://github.com/x0rz/phishing_catcher</a></p>
+</blockquote>
+<h4 id="o-que-e-o-phishing_catcher">O que é o phishing_catcher ?<a class="headerlink" href="#o-que-e-o-phishing_catcher" title="Permanent link">&para;</a></h4>
+<p>Com o phishing_catcher phishing é possivel detectar possíveis domínios de phishing quase em tempo real, isso é possivel devido ao projeto procurar por criação de certificados TLS suspeitas relatadas ao <strong>Certificate Transparency Log (CTL)</strong> por meio da <strong>API CertStream</strong>.</p>
+<h4 id="instalando-o-phishing_catcher">Instalando o phishing_catcher<a class="headerlink" href="#instalando-o-phishing_catcher" title="Permanent link">&para;</a></h4>
+<p>Podemos instalar o <strong>phishing_catcher</strong> usando o codigo fonte dele que está disponivel no link a seguir:
+<div class="highlight"><pre><span></span><code>$ git clone https://github.com/x0rz/phishing_catcher
+$ <span class="nb">cd</span> phishing_catcher
+$ sudo pip3 install -r requirements.txt
+</code></pre></div></p>
+<h4 id="como-usar-o-phishing_catcher">Como usar o phishing_catcher?<a class="headerlink" href="#como-usar-o-phishing_catcher" title="Permanent link">&para;</a></h4>
+<p>Podemos usar o phishing_catcher de forma simples, só chamar o arquivo com o python3.
+<div class="highlight"><pre><span></span><code>$ python3 catch_phishing.py
+</code></pre></div>
+<img alt="" src="../images/phishing_catcher-01.png" /></p>
+<h3 id="buscando-dominios-indexados-na-internet">Buscando dominios indexados na internet<a class="headerlink" href="#buscando-dominios-indexados-na-internet" title="Permanent link">&para;</a></h3>
+<p>Vamos buscar por dominios que possam estar indexados na internet nos motores de busca, vou focar apenas no Google nessa oficina.</p>
+<p>Precisar de 2 informações para uma melhor busca, são as:</p>
+<ul>
+<li>
+<p>Dominio original;</p>
+</li>
+<li>
+<p>Titulo da pagina;</p>
+</li>
+</ul>
+<h4 id="realizando-dorks-para-busca">Realizando dorks para busca<a class="headerlink" href="#realizando-dorks-para-busca" title="Permanent link">&para;</a></h4>
+<p>Imaginando que o nosso site que estamos analisando seja o site da oakley que possui o dominio <strong>oakley.com</strong> e tem o titulo <strong>Loja oficial Oakley®: Óculos de sol, Óculos de Proteção e Vestuário - Brazil</strong>.
+<div class="highlight"><pre><span></span><code>-site:oakley.com intitle:<span class="s2">&quot;Loja oficial Oakley®: Óculos de sol, Óculos de Proteção e Vestuário - Brazil&quot;</span>
+</code></pre></div></p>
+<h3 id="buscando-infraestruturas-indexados-na-internet">Buscando infraestruturas indexados na internet<a class="headerlink" href="#buscando-infraestruturas-indexados-na-internet" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Lembrando que isso é apenas um introdução e vamos ver mais no capitulo de <strong>buscando informações sobre infraestruturas</strong>.</p>
+</blockquote>
+<p>Assim como sites estão indexados na internet, informações de infraestruturas tambem estão e podem nos auxilixar na busca de sites maliciosos.</p>
+<p>Vamos usar o Shodan, ele é uma solução incrivel que nos auxilia na busca de informações de infraestruturas.</p>
+<blockquote>
+<p><a href="https://www.shodan.io/">https://www.shodan.io/</a></p>
+</blockquote>
+<p>É importante apenas uma informação, seja nome da empresa ou titulo que é o mais recomendado.</p>
+<p>Para realizar a busca, vamos usar o operador <strong>http.title</strong>.
+<div class="highlight"><pre><span></span><code>http.title:<span class="s2">&quot;Oakley&quot;</span>
+</code></pre></div>
+<img alt="" src="../images/shodan.png" /></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../introducao/" title="1.2. Monitorando phishings - Qual o objetivo desse modulo?" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Anterior
+                </span>
+                1.2. Monitorando phishings - Qual o objetivo desse modulo?
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../buscando-informacoes-sobre-infraestruturas/" title="2.2 Buscando informações sobre infraestruturas" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Próximo
+                </span>
+                2.2 Buscando informações sobre infraestruturas
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2021 GreenMind
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/squidfunk" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://gitter.im/squidfunk/mkdocs-material" target="_blank" rel="noopener" title="gitter.im" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M66.4 322.5H16V0h50.4v322.5zM166.9 76.1h-50.4V512h50.4V76.1zm100.6 0h-50.4V512h50.4V76.1zM368 76h-50.4v247H368V76z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://hub.docker.com/r/squidfunk/mkdocs-material/" target="_blank" rel="noopener" title="hub.docker.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/squidfunk" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://linkedin.com/in/squidfunk/" target="_blank" rel="noopener" title="linkedin.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://instagram.com/squidfunk" target="_blank" rel="noopener" title="instagram.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/vendor.de50e36d.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.ff925e8b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "search.config.lang": "pt", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Digite para iniciar a busca", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../../../assets/javascripts/worker/search.27c6a5e6.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
