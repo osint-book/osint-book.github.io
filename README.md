@@ -1,2 +1,2 @@
-# osint-book.github.io
-Versão Web do Livro - OSINT 101
+# osintbook-piloto
+OSINT Book Oficina piloto
