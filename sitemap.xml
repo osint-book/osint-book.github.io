@@ -2,182 +2,182 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://books.osintvillage.org/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/MISP/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/MISP/install-guide/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/MISP/install-guide/add-user-misp/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/MISP/install-guide/add-user-sync-misp/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/MISP/install-guide/aumentando-seguranca-servidor/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/MISP/install-guide/config-nginx-dns/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/MISP/install-guide/config-vps-server/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/MISP/install-guide/create-domain/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/MISP/install-guide/create-org-misp/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/MISP/install-guide/create-vpn/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/MISP/install-guide/install-docker/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/MISP/install-guide/install-misp-docker/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/MISP/install-guide/misp-config-init/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/MISP/install-guide/reset-admin-password-cli/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/introducao/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/black/configuracao-dns/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/black/criacao-dominios/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/black/criando-paginas-suspeitas/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/black/hospedagens/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/black/infraestruturas-gratuitas/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/black/infraestruturas-pagas/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/infraestrutura/a-importancia-criacao-lab/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/infraestrutura/criando-lab-kali-oficial-virtualbox/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/infraestrutura/criando-lab-windows-virtualbox/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/infraestrutura/instalando-genymotion-linux/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/infraestrutura/instalando-virtualbox-linux/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/infraestrutura/requisitos-lab/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/white/DGA/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/white/buscando-informacoes-sobre-infraestruturas/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/white/buscando-paginas-suspeitas/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/white/comunidades/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/white/materiais-indexados-na-internet/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.osintvillage.org/LABS/monitorando-phishings/white/monitorando-dominios/</loc>
-         <lastmod>2022-02-22</lastmod>
+         <lastmod>2022-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
